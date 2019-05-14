@@ -37,12 +37,12 @@ class Home1 extends React.Component {
    
 
     const res = await axios.get(
-      `http://localhost:5000/api/company/extending?location=${
+      `/api/company/extending?location=${
         this.state.country
       }&myCountry=${myCountry}`
     );
     const res1 = await axios.get(
-      `http://localhost:5000/api/company/providing?location=${
+      `/api/company/providing?location=${
         this.state.country
       }&myCountry=${myCountry}`
     );
