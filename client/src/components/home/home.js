@@ -10,7 +10,7 @@ const Home = props => {
   });
 
   const { country } = formData;
-  const { dashboard } = props;
+ 
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,11 +29,11 @@ const Home = props => {
     <Fragment>
       <div className="home-header">
         <h1>WELCOME TO BCONNECT </h1>
-        <p>A one place solution for your bussiness extension</p>
+        <p>A one place solution for your bussiness expansion</p>
       </div>
 
-      <h2>Select country</h2>
-      <form className="form" onSubmit={e => onSubmit(e)}>
+      <h2 className="home-h2">Select country</h2>
+      <form className="form form-home" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <select name="country" required onChange={e => onChange(e)}>
             <option disabled>Select your Country</option>
@@ -42,14 +42,14 @@ const Home = props => {
             <option value="CHINA">CHINA</option>
             <option value="JAPAN">JAPAN</option>
             <option value="ENGLAND">ENGLAND</option>
-            <option value="BRAZIL">BRAZIL</option>
+            <option value="SOUTHKOREA">SOUTHKOREA</option>
             <option value="AUSTRALIA">AUSTRALIA</option>
-            <option value="SOUTHAFRICA">SOUTHAFRICA</option>
+           
             <option value="SWITZERLAND">SWITZERLAND</option>
             <option value="RUSSIA">RUSSIA</option>
           </select>
         </div>
-        <input type="submit" className="btn btn-primary" value="Check" />
+        <input type="submit" className="btn btn-primary home-button" value="Check" />
       </form>
     </Fragment>
   );

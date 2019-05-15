@@ -28,7 +28,7 @@ if(isAuthenticated){
 return (
   <Fragment>
     <section className="container">
-      <h1 className="large text-primary">Sign In</h1>
+      <h1 className="large text-primary login-media">Sign In</h1>
       <p className="lead">
         <i className="fas fa-user" /> Sign into Your Account
       </p>
@@ -59,7 +59,7 @@ return (
         <input type="submit" className="btn btn-primary" value="Login " />
       </form>
       <p className="my-1">
-        create an account? <Link to="/signin">sign up</Link>
+        create an account? <Link to="/register">sign up</Link>
       </p>
     </section>
   </Fragment>

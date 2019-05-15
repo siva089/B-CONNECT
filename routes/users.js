@@ -5,6 +5,7 @@ const User=require('../models/register');
 const bcrypt=require("bcryptjs");
 const jwt=require("jsonwebtoken");
 const config=require('config')
+const UserData=require('../models/userdata')
 
 router.post('/',[
     check("name","name is Required").not().isEmpty(),
@@ -59,6 +60,23 @@ catch(e){
     res.status(500).json("server error")
 }
 
+})
+router.post('/data',async(req,res)=>{
+    const data={
+        name:req.body.name,
+        email:req.body.email,
+        regarding:req.body.regarding,
+        textarea:req.body.textarea
+    }
+    try{
+        userdata=new UserData(data)
+        await userdata.save()
+        res.send(userdata)
+    }
+    catch(e){
+res.status(500).send(e)
+    }
+    
 })
 
 module.exports=router

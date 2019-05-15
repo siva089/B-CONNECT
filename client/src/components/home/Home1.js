@@ -10,31 +10,28 @@ class Home1 extends React.Component {
     super(props);
     this.state = {
       companies: [],
-      intrestedCompanies:[],
-     
+      intrestedCompanies: [],
+
       myCountry: this.props.myCountry,
       country: this.props.location.state.country,
       loading: this.props.loading,
-      on:true,
-     
+      on: true
     };
   }
-  onSubmit1=()=>{
+  onSubmit1 = () => {
     this.setState({
-      on:true
-    })
-  }
-  onSubmit2=()=>{
+      on: true
+    });
+  };
+  onSubmit2 = () => {
     this.setState({
-      on:false
-    })
-  }
-
+      on: false
+    });
+  };
 
   async componentDidMount() {
     this.props.dashboard(this.props.location.state.country);
     const myCountry = this.state.myCountry;
-   
 
     const res = await axios.get(
       `/api/company/extending?location=${
@@ -46,17 +43,15 @@ class Home1 extends React.Component {
         this.state.country
       }&myCountry=${myCountry}`
     );
-  
+
     const datap = res1.data;
     this.setState({ intrestedCompanies: datap });
 
     const dataIs = res.data;
-    
-    
+
     this.setState({ companies: dataIs });
-   
   }
- 
+
   render() {
     const listItems = this.state.intrestedCompanies.map(c => (
       <Link
@@ -71,6 +66,10 @@ class Home1 extends React.Component {
       >
         <div className="home-box">
           <h1>{c.company}</h1>
+          <p className="service">services</p>
+          {c.servicesProvided.map(a => {
+            return <li className="services">{a}</li>;
+          })}
 
           <div className="home-bottom">
             <p className="home-box__date">
@@ -97,37 +96,47 @@ class Home1 extends React.Component {
       >
         <div className="home-box">
           <h1>{c.company}</h1>
+          <p className='service'>services</p>
+          {c.servicesProvided.map(a=>{
+            return <li className="services">{a}</li>; 
+          })}
 
           <div className="home-bottom">
-            <p className="home-box__date">
-              Establishedon:{c.establishedOn}
-            </p>
+            <p className="home-box__date">Establishedon:{c.establishedOn}</p>
             <p className="home-box__revenue">Revenue:{c.revenue}</p>
           </div>
         </div>
       </Link>
     ));
+    ///
+const isLoading=listedItems.length===0?<h1>Loading or no companies</h1>:listedItems;
+const loading=listItems.length===0?<h1>Loading or no companies</h1>:listItems
+
+    const dynamic = this.state.on
+      ? "offering services to  "
+      : "that are intrested to partner with ";
 
     return (
       <div className="b-g">
         <div id="divi">
           <button
-            className={"btn " +(this.state.on?'btn-primary':'nothing')}
-            
+            className={"btn home-btn " + (this.state.on ? "btn-primary" : "nothing")}
             onClick={this.onSubmit1}
           >
-            Companies providing services to {this.state.myCountry}{" "}
+            Companies that are providing services to {this.state.myCountry}{" "}
           </button>
-          <button className={"btn " +(!this.state.on?'btn-primary':'nothing')} onClick={this.onSubmit2}>
-            Companies that are intrested to partner with{" "}
-            {this.state.myCountry}
+          <button
+            className={"btn " + (!this.state.on ? "btn-primary" : "nothing")}
+            onClick={this.onSubmit2}
+          >
+            Companies that are intrested to partner with {this.state.myCountry}
           </button>
         </div>
         <h1 className="header">
-          Companies Providing Services to {this.state.myCountry}
+          Companies {dynamic} {this.state.myCountry}
         </h1>
 
-        <div id="home1-flex">{this.state.on ? listedItems : listItems}</div>
+        <div id="home1-flex">{this.state.on ?isLoading:loading}</div>
       </div>
     );
   }

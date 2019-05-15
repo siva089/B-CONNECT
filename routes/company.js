@@ -46,6 +46,7 @@ router.post(
       linkedin,
       offeringServices,
       intrestedIn,
+      servicesProvided,
       revenue,
       employees
     } = req.body;
@@ -73,6 +74,15 @@ router.post(
           return a.trim();
         });
     }
+     if (servicesProvided) {
+       companyFields.servicesProvided = servicesProvided
+         .split(",")
+
+         .map(a => {
+           return a.trim();
+         });
+     }
+    
     try {
       let company = new Company(companyFields);
       await company.save();

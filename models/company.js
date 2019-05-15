@@ -43,6 +43,10 @@ intrestedIn:{
     require:true
    
 },
+servicesProvided:{
+    type:[String],
+    required:true
+},
 revenue:{
     type:String,
 
