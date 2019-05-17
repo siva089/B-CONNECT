@@ -114,6 +114,9 @@ const isLoading =
   listedItems.length === 0 ? (
     <div className="loader">
       <Loader type="TailSpin" color="#00BFFF" height="50" width="50" />
+      no companies are intrested
+    
+     
     </div>
   ) : (
     listedItems
@@ -128,6 +131,9 @@ const loading =
         height="50"
         width="50"
       />
+      {setTimeout(function() {
+        return <h1>No companies are providing services</h1>;
+      }, 3000)}
     </div>
   ) : (
     listItems
