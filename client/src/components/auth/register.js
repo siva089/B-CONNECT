@@ -14,7 +14,7 @@ const Register = (props) => {
     email: "",
     password: "",
     password2: "",
-    country: ""
+    country: "USA"
   });
   const { name, email, password, password2, country } = formData;
   const onChange = e =>
