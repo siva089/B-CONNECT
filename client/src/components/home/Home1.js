@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { dashboard } from "../../actions/dashboard";
+import Loader from 'react-loader-spinner'
 
 import axios from "axios";
 
@@ -109,8 +110,28 @@ class Home1 extends React.Component {
       </Link>
     ));
     ///
-const isLoading=listedItems.length===0?<h1>Loading or no companies</h1>:listedItems;
-const loading=listItems.length===0?<h1>Loading or no companies</h1>:listItems
+const isLoading =
+  listedItems.length === 0 ? (
+    <div className="loader">
+      <Loader type="TailSpin" color="#00BFFF" height="50" width="50" />
+    </div>
+  ) : (
+    listedItems
+  );
+const loading =
+  listItems.length === 0 ? (
+    <div className="loader">
+      <Loader
+        className="loader"
+        type="TailSpin"
+        color="#00BFFF"
+        height="50"
+        width="50"
+      />
+    </div>
+  ) : (
+    listItems
+  );
 
     const dynamic = this.state.on
       ? "offering services to  "
